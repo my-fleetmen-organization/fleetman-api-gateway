@@ -28,6 +28,15 @@ pipeline {
            sh 'docker image build -t ${REPOSITORY_TAG} .'
          }
       }
+      
+      stage('Push Image to Docker Hub') {
+         steps {
+            sh '''
+               docker login -u $DOCKER_HUB_USERNAME -p $DOCKER_HUB_ACCESS_TOKEN
+               docker push $REPOSITORY_TAG
+            '''
+         }
+      }
 
       stage('Deploy to Cluster') {
           steps {
