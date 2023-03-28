@@ -38,10 +38,10 @@ pipeline {
          }
       }
 
-      //stage('Deploy to Cluster') {
-      //    steps {
-      //              sh 'envsubst < ${WORKSPACE}/deploy.yaml | kubectl --kubeconfig /var/jenkins_home/kube_config/config apply -f -'
-      //    }
-      //}
+      stage('Deploy to Cluster') {
+          steps {
+                    sh 'envsubst < ${WORKSPACE}/deploy.yaml | kubectl --kubeconfig /var/jenkins_home/kube_config/config apply -f -'
+          }
+      }
    }
 }
